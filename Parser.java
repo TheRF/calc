@@ -1,0 +1,87 @@
+import java.util.*;
+
+// Grammar:
+// expression = term | expression `+` term | expression `-` term
+// term = factor | term `*` factor | term `/` factor
+// factor = `+` factor | `-` factor | `(` expression `)`
+//        | number | functionName factor | factor `^` factor
+class Parser{
+    private ConstWrapsParse con;
+    private MathLib lib;
+    private int pos, ch, prevch;
+    private String str;
+
+    public Parser(){
+        con = new ConstWrapsParse();
+        lib = new MathLib();
+    }
+
+    public double parse(String input){
+        pos = -1;
+        str = input;
+
+        nextChar();
+        double x = parseExpression();
+        if (pos < str.length()) throw new RuntimeException("[Parser] Unexpected: " + (char)ch);
+        return x;
+    }
+
+    private void nextChar() {
+        prevch = ch;
+        ch = (++pos < str.length()) ? str.charAt(pos) : -1;
+    }
+
+    private boolean eat(HashSet<String> charToEatSet) {
+        while (ch == Constants.SPACE) nextChar();
+        Character tmp = (char) ch;
+        if (charToEatSet.contains(tmp.toString())) {
+            nextChar();
+            return true;
+        }
+        return false;
+    }
+
+    // Sonderzeichen
+    private boolean eat(char charToEat) {
+        while (ch == Constants.SPACE) nextChar();
+        if (ch == charToEat) {
+            nextChar();
+            return true;
+        }
+        return false;
+    }
+
+    private double parseExpression() {
+        double x = parseTerm();
+        for (;;) {
+            if(eat(con.getPrioOne())) x = lib.calc((char)prevch, x, parseTerm());
+            else return x;
+        }
+    }
+
+    private double parseTerm() {
+        double x = parseFactor();
+        for (;;) {
+            if(eat(con.getPrioTwo())) x = lib.calc((char)prevch, x, parseFactor());
+            else return x;
+        }
+    }
+
+    private double parseFactor() {
+        if (eat(Constants.NEGATE)) return -parseFactor();
+
+        double x=0;
+        int startPos = this.pos;
+        if (eat(Constants.PAROPEN)) {
+            x = parseExpression();
+            eat(Constants.PARCLOSE);
+        } else if ((ch >= Constants.ZERO && ch <= Constants.NINE) || ch == Constants.DSEP) { // numbers
+            while ((ch >= Constants.ZERO && ch <= Constants.NINE) || ch == Constants.DSEP) nextChar();
+            x = Double.parseDouble(str.substring(startPos, this.pos));
+        }
+
+        if (eat(con.getPrioThree())) x = lib.calc((char)prevch, x, parseFactor());
+
+        return x;
+    }
+}
