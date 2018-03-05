@@ -6,13 +6,13 @@ import java.util.*;
 // factor = `+` factor | `-` factor | `(` expression `)`
 //        | number | functionName factor | factor `^` factor
 class Parser{
-    private ConstWrapsParse con;
+    private ConstWrapsOperators con;
     private MathLib lib;
     private int pos, ch, prevch;
     private String str;
 
     public Parser(){
-        con = new ConstWrapsParse();
+        con = new ConstWrapsOperators();
         lib = new MathLib();
     }
 
@@ -31,10 +31,10 @@ class Parser{
         ch = (++pos < str.length()) ? str.charAt(pos) : -1;
     }
 
-    private boolean eat(HashSet<String> charToEatSet) {
+    private boolean eat(HashSet<Character> charToEatSet) {
         while (ch == Constants.SPACE) nextChar();
         Character tmp = (char) ch;
-        if (charToEatSet.contains(tmp.toString())) {
+        if (charToEatSet.contains(tmp)) {
             nextChar();
             return true;
         }

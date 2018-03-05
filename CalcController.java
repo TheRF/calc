@@ -27,6 +27,10 @@ class CalcController{
 		Character c = (key.length()==1 && cwc.containsChar(key.charAt(0))) ?
 						key.charAt(0): cwt.externToIntern(key);
 
+		ConstWrapsOperators cwo = new ConstWrapsOperators();
+		if(text.equals(Constants.ZERO.toString()) && !cwo.isOperator(c))
+			text = Constants.EMPTY;
+
 		Boolean save = false;
 
 		switch(cwc.getCharId(c)){
@@ -82,6 +86,7 @@ class CalcController{
 			  fieldhistory.add(text);
 			charhistory.add(key);
 		}
+
 		return ret;
 	}
 }

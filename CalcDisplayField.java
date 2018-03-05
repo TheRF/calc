@@ -7,4 +7,11 @@ class CalcDisplayField extends TextField{
 
 		setAlignment(Pos.CENTER_RIGHT);
 	}
+
+	public void setText(String text){
+		if (text.equals(Constants.EMPTY))
+			text = Constants.ZERO.toString();
+
+		super.setText(text);
+	}
 }
