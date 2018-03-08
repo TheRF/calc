@@ -9,7 +9,9 @@ public class CalcMain extends Application{
 
 	@Override
 	public void start(Stage PrimaryStage){
-		PrimaryStage.setScene(new Scene(new CalcLayout(), 300, 300));
+		PrimaryStage.setScene(new Scene(new CalcLayout(),
+										Constants.APPMINSIZE,
+										Constants.APPMINSIZE));
 		PrimaryStage.show();
 	}
 }

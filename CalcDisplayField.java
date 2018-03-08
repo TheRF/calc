@@ -1,17 +1,19 @@
 import javafx.scene.control.*;
 import javafx.geometry.*;
+import javafx.scene.text.*;
 
 class CalcDisplayField extends TextField{
 	public CalcDisplayField(){
 		super(Constants.ZERO.toString());
 
 		setAlignment(Pos.CENTER_RIGHT);
-	}
+		setFont(new Font(getFont().getName(), Constants.FONTSIZE));
+		setMinHeight(Constants.COMPSIZE);
 
-	public void setText(String text){
-		if (text.equals(Constants.EMPTY))
-			text = Constants.ZERO.toString();
-
-		super.setText(text);
+		setEditable(false);
+		textProperty().addListener((observable, sOld, sNew)->{
+			if(Constants.EMPTY.equals(sNew))
+				setText(Constants.ZERO.toString());
+		});
 	}
 }

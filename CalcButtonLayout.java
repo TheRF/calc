@@ -6,6 +6,8 @@ class CalcButtonLayout extends VBox{
 	
 	public CalcButtonLayout(TextField tf, CalcController cc){
 		super();
+		setSpacing(Constants.SPACING);
+		//VBox.setVgrow(this, Priority.ALWAYS);
 		
 		ConstWrapsButtonPosition btn = new ConstWrapsButtonPosition();
 

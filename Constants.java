@@ -44,7 +44,9 @@ class Constants{
     public static final int SAVESIZE = 10;
 
     public static final int SPACING = 5;
-    public static final int BTN_PER_ROW = 0;
+    public static final int COMPSIZE = 50;
+    public static final int FONTSIZE = 24;
+    public static final int APPMINSIZE = 400;
 
     public static final int MEMSIZE = 3;
 }
