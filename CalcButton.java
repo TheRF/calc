@@ -5,8 +5,8 @@ class CalcButton extends Button{
 	public CalcButton(String caption, TextField field, CalcController cc){
 		super(caption);
 		
-		setMinWidth(Constants.COMPSIZE);
-		setMinHeight(Constants.COMPSIZE);
+		setMinWidth(ConstantsGui.COMPSIZE);
+		setMinHeight(ConstantsGui.COMPSIZE);
 		setMaxWidth(Double.MAX_VALUE);
 		setMaxHeight(Double.MAX_VALUE);
 

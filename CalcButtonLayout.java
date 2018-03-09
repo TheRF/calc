@@ -6,13 +6,16 @@ class CalcButtonLayout extends VBox{
 	
 	public CalcButtonLayout(TextField tf, CalcController cc){
 		super();
-		setSpacing(Constants.SPACING);
-		//VBox.setVgrow(this, Priority.ALWAYS);
+		setSpacing(ConstantsGui.SPACING);
+		VBox.setVgrow(this, Priority.ALWAYS);
 		
 		ConstWrapsButtonPosition btn = new ConstWrapsButtonPosition();
 
 		for(int i=0; i<btn.getHLinesCount(); i++){
-			getChildren().add(new CalcButtonLayoutH(i, tf, cc));
+			boolean c = (i==0)||(i==(btn.getHLinesCount()-1));
+			CalcButtonLayoutH hlay = new CalcButtonLayoutH(i, tf, cc, c);
+			VBox.setVgrow(hlay, Priority.ALWAYS);
+			getChildren().add(hlay);
 		}
 	}
 }
