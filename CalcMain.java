@@ -13,6 +13,8 @@ public class CalcMain extends Application{
 										ConstantsGui.APPMINSIZE,
 										ConstantsGui.APPMINSIZE));
 		PrimaryStage.setTitle(ConstantsGui.TITLE);
+		PrimaryStage.setMinWidth(ConstantsGui.APPMINSIZE);
+		PrimaryStage.setMinHeight(ConstantsGui.APPMINSIZE);
 		PrimaryStage.show();
 	}
 }

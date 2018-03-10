@@ -7,7 +7,7 @@ class CalcDisplayField extends TextField{
 		super(Constants.ZERO.toString());
 
 		setAlignment(Pos.CENTER_RIGHT);
-		setFont(new Font(getFont().getName(), ConstantsGui.FONTSIZE));
+		setFont(new Font(getFont().getName(), ConstantsGui.EFONTSIZE));
 		setMinHeight(ConstantsGui.COMPSIZE);
 
 		setEditable(false);

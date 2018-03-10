@@ -1,5 +1,6 @@
 import javafx.scene.control.*;
 import javafx.event.*;
+import javafx.scene.text.*;
 
 class CalcButton extends Button{
 	public CalcButton(String caption, TextField field, CalcController cc){
@@ -10,8 +11,10 @@ class CalcButton extends Button{
 		setMaxWidth(Double.MAX_VALUE);
 		setMaxHeight(Double.MAX_VALUE);
 
-		this.setOnAction((event)->{
-			field.setText(cc.processInput(this.getText(), field.getText(), field.getText().length()));
+		setFont(new Font(getFont().getName(), ConstantsGui.BFONTSIZE));
+
+		setOnAction((event)->{
+			field.setText(cc.processInput(getText(), field.getText(), field.getText().length()));
 		});
 	}
 }
