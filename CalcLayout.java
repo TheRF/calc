@@ -14,7 +14,7 @@ class CalcLayout extends VBox{
 		CalcDisplayField tf = new CalcDisplayField();
 		getChildren().add(tf);
 
-		CalcButtonLayout layout = new CalcButtonLayout(tf, new CalcController());
+		CalcButtonLayout layout = new CalcButtonLayout(tf);
 		setVgrow(layout, Priority.ALWAYS);
 		getChildren().add(layout);
 	}

@@ -5,7 +5,7 @@ import javafx.geometry.*;
 
 class CalcButtonLayout extends VBox{
 	
-	public CalcButtonLayout(TextField tf, CalcController cc){
+	public CalcButtonLayout(IDisplayable comp){
 		super();
 		setSpacing(ConstantsGui.SPACING);
 		VBox.setVgrow(this, Priority.ALWAYS);
@@ -13,7 +13,7 @@ class CalcButtonLayout extends VBox{
 		ConstWrapsButtonPosition btn = new ConstWrapsButtonPosition();
 
 		for(int i=0; i<btn.getHLinesCount(); i++){
-			CalcButtonLayoutH hlay = new CalcButtonLayoutH(i, tf, cc);
+			CalcButtonLayoutH hlay = new CalcButtonLayoutH(i, comp);
 			VBox.setVgrow(hlay, Priority.ALWAYS);
 			getChildren().add(hlay);
 		}

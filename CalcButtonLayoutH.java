@@ -4,14 +4,14 @@ import javafx.scene.layout.*;
 
 class CalcButtonLayoutH extends HBox{
 
-	public CalcButtonLayoutH(int row, TextField tf, CalcController cc){
+	public CalcButtonLayoutH(int row, IDisplayable comp){
 		super();
 		setSpacing(ConstantsGui.SPACING);
 		HBox.setHgrow(this, Priority.ALWAYS);
 		
 		ConstWrapsButtonPosition btn = new ConstWrapsButtonPosition();
 		for(String s: btn.getHLine(row)){
-			CalcButton _btn = new CalcButton(s, tf, cc);
+			CalcButton _btn = new CalcButton(s, comp);
 			HBox.setHgrow(_btn, Priority.ALWAYS);
 			getChildren().add(_btn);
 		}

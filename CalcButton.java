@@ -3,7 +3,7 @@ import javafx.event.*;
 import javafx.scene.text.*;
 
 class CalcButton extends Button{
-	public CalcButton(String caption, TextField field, CalcController cc){
+	public CalcButton(String caption, IDisplayable comp){
 		super(caption);
 		
 		setMinWidth(ConstantsGui.COMPSIZE);
@@ -14,7 +14,8 @@ class CalcButton extends Button{
 		setFont(new Font(getFont().getName(), ConstantsGui.BFONTSIZE));
 
 		setOnAction((event)->{
-			field.setText(cc.processInput(getText(), field.getText(), field.getText().length()));
+			comp.display(getText());
+			//field.setText(cc.processInput(getText(), field.getText(), field.getText().length()));
 		});
 	}
 }
