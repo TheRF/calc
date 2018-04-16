@@ -1,3 +1,7 @@
-docs/
-*.class
-*.jar
+/*
+!/*.java
+!/*.md
+
+!/docs
+/docs/*
+!/docs/*.tex
