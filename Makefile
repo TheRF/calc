@@ -1,4 +1,5 @@
 JC=javac
+J=java
 CFLAGS=-Xlint:all -Xprefer:source -Xdiags:verbose
 AFLAGS=cevf
 SE=.java
@@ -26,5 +27,9 @@ clean:
 	rm *${CE}
 	rm *${AE}
 
-jar: all
+jar: clean all
 	${ARCHIVE} ${AFLAGS} ${MAIN} calculator${AE} *${CE}
+
+testmath:
+	${JC} ${CFLAGS} TestMath${SE}
+	${J} TestMath
