@@ -52,4 +52,24 @@ class CalcHistory{
 		if(history.size()>0)
 			removeUntilDown(history.size()-1);
 	}
+
+	public boolean isLast(String s){
+		boolean ret = false;
+
+		if (history.size()>0)
+			ret = s.equals(last());
+
+		return ret;
+	}
+
+	public boolean endsWith(String s){
+		String tmp = Constants.EMPTY;
+		int i = history.size()-1;
+
+		while((tmp.length()<s.length()) && (tmp.length()<history.size())){
+			tmp = history.get(i)+tmp;
+		}
+
+		return (tmp.length()>0) && tmp.equals(s);
+	}
 }

@@ -9,13 +9,13 @@ class CalcController{
 	private void initHistory(){
 		fieldhistory = new CalcHistory(Constants.SAVESIZE);
 		fieldhistory.add(Constants.EMPTY);  // leeres Element damit synchron mit charhistory
-		charhistory = new CalcHistory(Constants.SAVESIZE);
 	}
 
 	public CalcController(){
 		mh = new MemHandler(Constants.MEMORY_A, Constants.MEMORY_B, Constants.MEMORY_C);
 
 		initHistory();
+		charhistory = new CalcHistory(Constants.SAVESIZE);
 	}
 
 	public String processInput(String key, String text, int pos){
@@ -43,7 +43,7 @@ class CalcController{
 			case chFunction:
 				if(cwc.getMemSet().contains(c))
 				{
-					if(charhistory.last().charAt(0)==Constants.EQUAL)
+					if(charhistory.isLast(Constants.EQUAL.toString()))
 						// Modus 1: neuen Wert speichern
 						mh.setMemory(key, Double.parseDouble(text));
 					else{
@@ -73,6 +73,8 @@ class CalcController{
 					initHistory();// Formeleingabe abgeschlossen -> Puffer leeren
 					ret = cwt.convertTextToIntern(text);
 					ret = fh.processFormula(text);
+
+					// letzte Kommastelle abtrennen
 				}
 				else
 					throw new RuntimeException("[CalcController] Unexpected: " + key);
