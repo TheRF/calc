@@ -4,10 +4,12 @@ enum CharId {chRegular, chTranslate, chFunction}
 
 class ConstWrapsControl{
     private HashMap<Character, CharId> functypes;
+    private HashMap<Character, CharId> numbers;
     private HashSet<Character> memtypes;
 
     public ConstWrapsControl(){
     	functypes = new HashMap<Character, CharId>();
+        numbers = new HashMap<Character, CharId>();
 
     	// Zeichen
     	functypes.put(Constants.PLUS, CharId.chRegular);
@@ -17,16 +19,18 @@ class ConstWrapsControl{
     	functypes.put(Constants.POWER, CharId.chRegular);
     	functypes.put(Constants.PAROPEN, CharId.chRegular);
     	functypes.put(Constants.PARCLOSE, CharId.chRegular);
-    	functypes.put(Constants.ZERO, CharId.chRegular);
-    	functypes.put(Constants.ONE, CharId.chRegular);
-    	functypes.put(Constants.TWO, CharId.chRegular);
-    	functypes.put(Constants.THREE, CharId.chRegular);
-    	functypes.put(Constants.FOUR, CharId.chRegular);
-    	functypes.put(Constants.FIVE, CharId.chRegular);
-    	functypes.put(Constants.SIX, CharId.chRegular);
-    	functypes.put(Constants.SEVEN, CharId.chRegular);
-    	functypes.put(Constants.EIGHT, CharId.chRegular);
-    	functypes.put(Constants.NINE, CharId.chRegular);
+
+    	numbers.put(Constants.ZERO, CharId.chRegular);
+    	numbers.put(Constants.ONE, CharId.chRegular);
+    	numbers.put(Constants.TWO, CharId.chRegular);
+    	numbers.put(Constants.THREE, CharId.chRegular);
+    	numbers.put(Constants.FOUR, CharId.chRegular);
+    	numbers.put(Constants.FIVE, CharId.chRegular);
+    	numbers.put(Constants.SIX, CharId.chRegular);
+    	numbers.put(Constants.SEVEN, CharId.chRegular);
+    	numbers.put(Constants.EIGHT, CharId.chRegular);
+    	numbers.put(Constants.NINE, CharId.chRegular);
+
     	functypes.put(Constants.NEGATE, CharId.chRegular);
     	functypes.put(Constants.SPACE, CharId.chRegular);
     	functypes.put(Constants.DSEP, CharId.chRegular);
@@ -53,11 +57,18 @@ class ConstWrapsControl{
     }
 
     public CharId getCharId(Character c){
-    	return functypes.get(c);
+        if (functypes.get(c)!=null)
+    	   return functypes.get(c);
+        else //if (numbers.get(c)!=null)
+            return numbers.get(c);
     }
 
     public boolean containsChar(Character c){
-        return functypes.containsKey(c);
+        return functypes.containsKey(c) || numbers.containsKey(c);
+    }
+
+    public boolean isNumber(Character c){
+        return numbers.containsKey(c);
     }
 
     public HashSet<Character> getMemSet(){return memtypes;}

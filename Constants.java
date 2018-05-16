@@ -38,6 +38,10 @@ class Constants{
     public static final Character NEGATE   = '-';
     public static final Character SPACE    = ' ';
     public static final Character DSEP     = ',';
+    public static final Character DSEPNORM = '.';
+
+    public static final String INF = "Infinity";
+    public static final String NAN = "NaN";
 
     public static final String EMPTY = "";
 

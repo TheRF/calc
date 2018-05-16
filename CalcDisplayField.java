@@ -22,6 +22,34 @@ class CalcDisplayField extends TextField implements IDisplayable{
 	}
 
 	public void display(String s){
-		setText(cc.processInput(s, getText(), getText().length()));
+		try{
+			String disp = getText();
+			disp = disp.replace(Constants.DSEP, Constants.DSEPNORM);
+			disp = cc.processInput(s, disp, disp.length());
+			disp = disp.replace(Constants.DSEPNORM, Constants.DSEP);
+
+			if (disp.equals(Constants.INF) || disp.equals(Constants.NAN)){
+				throw new ArithmeticException(ErrorConstants.ERRCALCCONTZERO);
+			}
+
+			setText(disp);
+		}
+		catch(ArithmeticException e){
+			if ((e.getMessage()).contains(ErrorConstants.ERRCALCCONTZERO))
+				ErrorDialog.alert(ErrorConstants.ERRCALCTITLE,
+				                  ErrorConstants.ERRCALCZERO,
+				                  e.getMessage());
+			else
+				ErrorDialog.alert(ErrorConstants.ERRCALCTITLE,
+					              ErrorConstants.ERRCALCDEF,
+					              e.getMessage());
+
+			setText(Constants.EMPTY);
+		}
+		catch(RuntimeException e){
+			ErrorDialog.alert(ErrorConstants.ERRSYNTITLE,
+				              ErrorConstants.ERRSYNDESC,
+				              e.getMessage());
+		}
 	}
 }

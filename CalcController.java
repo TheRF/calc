@@ -28,8 +28,9 @@ class CalcController{
 						key.charAt(0): cwt.externToIntern(key);
 
 		ConstWrapsOperators cwo = new ConstWrapsOperators();
-		if(text.equals(Constants.ZERO.toString()) && !cwo.isOperator(c))
+		if(text.equals(Constants.ZERO.toString()) && !cwo.isOperator(c)){
 			text = Constants.EMPTY;
+		}
 
 		Boolean save = false;
 
@@ -37,6 +38,13 @@ class CalcController{
 			case chRegular:
 			case chTranslate:
 				key = cwt.internToExtern(c);
+				// nach Berechnung eventuell zuruecksetzen
+				System.out.println("test");
+				if (charhistory.isLast(Constants.EQUAL.toString())
+					  && cwc.isNumber(c)){
+					text = Constants.EMPTY;
+					System.out.println("test1");
+				}
 				ret = fh.insertAtPos(key, text, pos);
 				save = true;
 				break;
@@ -74,7 +82,10 @@ class CalcController{
 					ret = cwt.convertTextToIntern(text);
 					ret = fh.processFormula(text);
 
-					// letzte Kommastelle abtrennen
+					// Nachkomma-0en abtrennen
+					ret = CalcStringFuncs.truncFloatVal(ret);
+
+					save = true;
 				}
 				else
 					throw new RuntimeException("[CalcController] Unexpected: " + key);

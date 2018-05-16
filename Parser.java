@@ -1,5 +1,8 @@
 import java.util.*;
 
+/*
+    Original von: https://stackoverflow.com/questions/3422673/evaluating-a-math-expression-given-in-string-form/26227947#26227947
+*/
 // Grammar:
 // expression = term | expression `+` term | expression `-` term
 // term = factor | term `*` factor | term `/` factor
@@ -75,8 +78,8 @@ class Parser{
         if (eat(Constants.PAROPEN)) {
             x = parseExpression();
             eat(Constants.PARCLOSE);
-        } else if ((ch >= Constants.ZERO && ch <= Constants.NINE) || ch == Constants.DSEP) { // numbers
-            while ((ch >= Constants.ZERO && ch <= Constants.NINE) || ch == Constants.DSEP) nextChar();
+        } else if ((ch >= Constants.ZERO && ch <= Constants.NINE) || ch == Constants.DSEPNORM) { // numbers
+            while ((ch >= Constants.ZERO && ch <= Constants.NINE) || ch == Constants.DSEPNORM) nextChar();
             x = Double.parseDouble(str.substring(startPos, this.pos));
         }
 
