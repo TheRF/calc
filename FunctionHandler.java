@@ -22,7 +22,6 @@ class FunctionHandler{
 
 	public String processFormula(String text){
 		Parser p = new Parser();
-		System.out.println(text);
 
 		Double d = p.parse(text);
 		text = d.toString();

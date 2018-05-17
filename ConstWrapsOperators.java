@@ -15,7 +15,7 @@ class ConstWrapsOperators{
         PrioTwo.add(Constants.DIVIDE);
 
         PrioThree = new HashSet<Character>();
-        PrioTwo.add(Constants.QUAD);
+        //PrioTwo.add(Constants.QUAD);  // vorerst einzeln abgefangen
         PrioTwo.add(Constants.POWER);
         PrioTwo.add(Constants.ROOT);
         PrioTwo.add(Constants.NROOTC);

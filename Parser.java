@@ -91,7 +91,11 @@ class Parser{
                 x = Double.parseDouble(str.substring(startPos, this.pos));
             }
 
-            if (eat(con.getPrioThree())){
+            if ((char)ch==Constants.QUAD){
+                nextChar();
+                x = lib.calc(Constants.POWER, x, 2);
+            }
+            else if (eat(con.getPrioThree())){
                 x = lib.calc((char)prevch, x, parseFactor());
             }
         }
