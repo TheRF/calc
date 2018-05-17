@@ -39,11 +39,9 @@ class CalcController{
 			case chTranslate:
 				key = cwt.internToExtern(c);
 				// nach Berechnung eventuell zuruecksetzen
-				System.out.println("test");
 				if (charhistory.isLast(Constants.EQUAL.toString())
 					  && cwc.isNumber(c)){
 					text = Constants.EMPTY;
-					System.out.println("test1");
 				}
 				ret = fh.insertAtPos(key, text, pos);
 				save = true;
@@ -69,6 +67,8 @@ class CalcController{
 				} else if(c == Constants.DELETE_BACKC){
 					if(text.length()==0)
 						return Constants.EMPTY;
+					if(charhistory.isLast(Constants.EQUAL.toString()))
+						return text;
 					
 					text = cwt.convertTextToIntern(text);
 					ret = fh.deleteLastInput(text);

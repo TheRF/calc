@@ -54,6 +54,7 @@ class ConstWrapsButtonPosition{
 		// letzte
 		ArrayList<String> lst = new ArrayList<String>();
 		lst.add(Constants.ZERO.toString());
+		lst.add(Constants.DSEP.toString());
 		lst.add(Constants.PLUS.toString());
 		lst.add(Constants.NROOT_PUB);
 		lst.add(Constants.EQUAL.toString());

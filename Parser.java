@@ -83,8 +83,9 @@ class Parser{
             x = Double.parseDouble(str.substring(startPos, this.pos));
         }
 
-        if (eat(con.getPrioThree())) x = lib.calc((char)prevch, x, parseFactor());
-
+        if (eat(con.getPrioThree())){
+            x = lib.calc((char)prevch, x, parseFactor());
+        }
         return x;
     }
 }
