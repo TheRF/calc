@@ -45,7 +45,8 @@ class ConstWrapsTranslate{
 	public String convertTextToIntern(String text){
 		for(String s: convertToIntern.keySet()){
 			String val = convertToIntern.get(s).toString();
-			text.replace(s, val);
+
+			text = text.replaceAll(s, val);
 		}
 		return text;
 	}
@@ -53,7 +54,8 @@ class ConstWrapsTranslate{
 	public String convertTextToExtern(String text){
 		for(Character s: convertToExtern.keySet()){
 			String val = convertToExtern.get(s);
-			text.replace(s.toString(), val);
+
+			text = text.replaceAll(s.toString(), val);
 		}
 		return text;
 	}

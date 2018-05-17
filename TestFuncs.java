@@ -22,4 +22,16 @@ class TestFuncs{
 		number = CalcStringFuncs.truncFloatVal(number);
 		System.out.println("output value: "+number);
 	}
+
+	public static void ExternAndIntern(String text){
+		ConstWrapsTranslate cwt = new ConstWrapsTranslate();
+		System.out.println("======================================");
+		System.out.println("input text: "+text);
+
+		text = cwt.convertTextToIntern(text);
+		System.out.println("intern value: "+text);
+
+		text = cwt.convertTextToExtern(text);
+		System.out.println("extern value: "+text);
+	}
 }

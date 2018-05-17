@@ -75,16 +75,25 @@ class Parser{
 
         double x=0;
         int startPos = this.pos;
-        if (eat(Constants.PAROPEN)) {
-            x = parseExpression();
-            eat(Constants.PARCLOSE);
-        } else if ((ch >= Constants.ZERO && ch <= Constants.NINE) || ch == Constants.DSEPNORM) { // numbers
-            while ((ch >= Constants.ZERO && ch <= Constants.NINE) || ch == Constants.DSEPNORM) nextChar();
-            x = Double.parseDouble(str.substring(startPos, this.pos));
+        if (ch == Constants.ROOT){// Spezialfall Quadratwurzel
+            nextChar();
+            x = lib.calc(Constants.NROOTC, 2, parseFactor());
         }
+        else
+        { 
+            if (eat(Constants.PAROPEN)) {
+                x = parseExpression();
+                eat(Constants.PARCLOSE);
+            }
+            else if ((ch >= Constants.ZERO && ch <= Constants.NINE) || ch == Constants.DSEPNORM) { // numbers
+                while ((ch >= Constants.ZERO && ch <= Constants.NINE) || ch == Constants.DSEPNORM)
+                    nextChar();
+                x = Double.parseDouble(str.substring(startPos, this.pos));
+            }
 
-        if (eat(con.getPrioThree())){
-            x = lib.calc((char)prevch, x, parseFactor());
+            if (eat(con.getPrioThree())){
+                x = lib.calc((char)prevch, x, parseFactor());
+            }
         }
         return x;
     }

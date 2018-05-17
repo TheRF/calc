@@ -38,9 +38,9 @@ class CalcController{
 			case chRegular:
 			case chTranslate:
 				key = cwt.internToExtern(c);
-				// nach Berechnung eventuell zuruecksetzen
-				if (charhistory.isLast(Constants.EQUAL.toString())
-					  && cwc.isNumber(c)){
+				// nach Berechnung oder bei Wurzel eventuell zuruecksetzen
+				if ((charhistory.isLast(Constants.EQUAL.toString()) && cwc.isNumber(c))
+					  || (key.equals(Constants.ROOT.toString()) && text.equals(Constants.ZERO.toString()))){
 					text = Constants.EMPTY;
 				}
 				ret = fh.insertAtPos(key, text, pos);
@@ -80,7 +80,7 @@ class CalcController{
 
 					initHistory();// Formeleingabe abgeschlossen -> Puffer leeren
 					ret = cwt.convertTextToIntern(text);
-					ret = fh.processFormula(text);
+					ret = fh.processFormula(ret);
 
 					// Nachkomma-0en abtrennen
 					ret = CalcStringFuncs.truncFloatVal(ret);

@@ -33,3 +33,15 @@ jar: clean all
 testmath:
 	${JC} ${CFLAGS} TestMath${SE}
 	${J} TestMath
+
+testparse:
+	${JC} ${CFLAGS} TestParser${SE}
+	${J} TestParser
+
+testtrunc:
+	${JC} ${CFLAGS} TestTruncate${SE}
+	${J} TestTruncate
+
+testintext:
+	${JC} ${CFLAGS} TestInternExtern${SE}
+	${J} TestInternExtern

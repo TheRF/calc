@@ -13,14 +13,14 @@ class Constants{
     public static final String MEMORY_B    = "M2";
     public static final String MEMORY_C    = "M3";
     public static final String DELETE_STEP = "CE";
-    public static final String CLEAR       = "C";
+    public static final String CLEAR       = "CA";
     public static final String DELETE_BACK = "\u2190";
     public static final String NROOT_PUB   = "n\u221a";
     public static final Character MEMORY_AC    = 'd';// sichtbar intern ...
     public static final Character MEMORY_BC    = 'e';
     public static final Character MEMORY_CC    = 'f';
     public static final Character DELETE_STEPC = 'c';
-    public static final Character CLEARC       = 'C';
+    public static final Character CLEARC       = 'g';
     public static final Character DELETE_BACKC = 'b';
     public static final Character NROOTC       = 'r';
 
