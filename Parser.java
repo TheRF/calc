@@ -7,7 +7,7 @@ import java.util.*;
 // expression = term | expression `+` term | expression `-` term
 // term = factor | term `*` factor | term `/` factor
 // factor = `+` factor | `-` factor | `(` expression `)`
-//        | number | functionName factor | factor `^` factor
+//        | number | functionName factor | factor `^` factor | Wurzel factor | factor Quadrat
 class Parser{
     private ConstWrapsOperators con;
     private MathLib lib;
@@ -71,7 +71,7 @@ class Parser{
     }
 
     private double parseFactor() {
-        if (eat(Constants.NEGATE)) return -parseFactor();
+        if (eat(Constants.NEGATE)) return -parseFactor();// Spezialfall Negation
 
         double x=0;
         int startPos = this.pos;
@@ -91,7 +91,7 @@ class Parser{
                 x = Double.parseDouble(str.substring(startPos, this.pos));
             }
 
-            if ((char)ch==Constants.QUAD){
+            if ((char)ch==Constants.QUAD){// Spezialfall Quadrat
                 nextChar();
                 x = lib.calc(Constants.POWER, x, 2);
             }
