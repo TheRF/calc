@@ -38,11 +38,14 @@ class CalcController{
 			case chRegular:
 			case chTranslate:
 				key = cwt.internToExtern(c);
-				// nach Berechnung oder bei Wurzel eventuell zuruecksetzen
-				if ((charhistory.isLast(Constants.EQUAL.toString()) && cwc.isNumber(c))
-					  || (key.equals(Constants.ROOT.toString()) && text.equals(Constants.ZERO.toString()))){
+
+				// nach Berechnung oder bei Wurzel/Vorzeichen eventuell zuruecksetzen
+				if ((charhistory.isLast(Constants.EQUAL.toString()) || text.equals(Constants.ZERO.toString()))
+			            && 
+			            (cwc.isNumber(c) || cwc.isReplaceVal(c))){
 					text = Constants.EMPTY;
 				}
+				
 				ret = fh.insertAtPos(key, text, pos);
 				save = true;
 				break;

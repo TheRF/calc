@@ -5,6 +5,7 @@ enum CharId {chRegular, chTranslate, chFunction}
 class ConstWrapsControl{
     private HashMap<Character, CharId> functypes;
     private HashMap<Character, CharId> numbers;
+    private HashSet<Character> initvals;
     private HashSet<Character> memtypes;
 
     public ConstWrapsControl(){
@@ -54,6 +55,12 @@ class ConstWrapsControl{
         memtypes.add(Constants.MEMORY_AC);
         memtypes.add(Constants.MEMORY_BC);
         memtypes.add(Constants.MEMORY_CC);
+
+        // Werte die den default ueberschreiben
+        initvals = new HashSet<Character>();
+        initvals.add(Constants.PLUS);
+        initvals.add(Constants.MINUS);
+        initvals.add(Constants.ROOT);
     }
 
     public CharId getCharId(Character c){
@@ -69,6 +76,10 @@ class ConstWrapsControl{
 
     public boolean isNumber(Character c){
         return numbers.containsKey(c);
+    }
+
+    public boolean isReplaceVal(Character c){
+        return initvals.contains(c);
     }
 
     public HashSet<Character> getMemSet(){return memtypes;}
